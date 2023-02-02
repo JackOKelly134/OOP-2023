@@ -26,7 +26,6 @@ public class HelloProcessing extends PApplet
 		//stroke(255);
 		noStroke();
 		fill(250,250,0);
-		//line(10,10,100,100);
 		circle(250,250,400);
 		fill(0,255,255);
 		triangle(250,0,40,400,450,400);
@@ -35,7 +34,9 @@ public class HelloProcessing extends PApplet
 		fill(0,0,0);
 		circle(250,200,90);
 		fill(0,0,0);
-		circle(mouseX,mouseY, 10);
+		//circle(mouseX,mouseY, 100);
+
+
 		//rect(10,300,20,100);
 		//stroke(127);
 		//triangle(40,90,300,20,80,70);
