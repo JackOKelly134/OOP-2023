@@ -17,7 +17,7 @@ public class StarMap extends PApplet
 
 	public void setup() {
 		colorMode(RGB);
-		background(0);
+		background(250);
 		
 		smooth();
 
