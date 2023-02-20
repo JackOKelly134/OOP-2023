@@ -23,7 +23,7 @@ public class Audio1 extends PApplet
 
 	public void setup() {
 		colorMode(HSB);
-		background(255);
+		background(0);
 
         minim = new Minim(this);
 
