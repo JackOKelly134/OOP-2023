@@ -62,8 +62,5 @@ public class audio1 extends PApplet
 
     float lerpedR = 0;
 
-    public void keyPressed()
-    {
-        
-    }
+   
 }
