@@ -12,8 +12,10 @@ public class LifeBoard {
 
    public LifeBoard(int size, PApplet p)
    {
-    this.size = size;
-    board = new boolean[size][size];
+        this.size = size;
+        board = new boolean[size][size];
+        this.p = p;
+        cellWidth =p.width / (float) size;
    }
 
    public void randomise()
@@ -31,13 +33,23 @@ public class LifeBoard {
 
    public void render ()
    {
+        p.stroke(255);
         
         for(int row = 0 ; row < size; row++)
             {
                 for (int col = 0 ; col < size ; col ++)
                 {
-                    float dice  = p.random(0, 1);
-                    board[row][col] = (dice <= 0.5f);
+                   float x = col * cellWidth;
+                   float y = row * cellWidth;
+
+                   if (board[row][col]){
+                        p.fill(0, 255, 0);
+
+                   }else{
+                        p.noFill();
+
+                   }
+                   p.rect(x, y, cellWidth, cellWidth);
                 }
             }
     }
