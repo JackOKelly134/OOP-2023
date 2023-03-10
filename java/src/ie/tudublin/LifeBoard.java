@@ -1,21 +1,100 @@
 package ie.tudublin;
 
+import javax.lang.model.util.ElementScanner14;
+
 import processing.core.PApplet;
 
 public class LifeBoard {
 
    boolean[][] board;
+   boolean[][] next;
    private int size;
    PApplet p;
 
    float cellWidth;
 
+   public boolean getCell(int row, int col) 
+   {
+        if (row >= 0 && row < size && col >= 0 && col < size)
+        {
+            return board[row][col];
+        }
+        else 
+        {
+            return false;
+        }
+   }
+
+   public int countCells(int row, int col) //Counting the cells in the game
+   {
+        int count = 0;
+        for(int i = -1; i <= 1 ; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (! (i == 0) && (j== 0))
+                {
+                    if (getCell(row + i, col + j))
+                    {
+                        count ++;
+                    }
+                }
+            }
+        }
+        return count;
+   }
+
+   public void applyRules()
+   {
+       for(int row = 0; row < size ; row++)
+       {
+            for (int col = 0; col < size; col ++)
+            {
+                int count = countCells(row, col);
+                if (board[row][col])
+                {
+                    if (count == 2 || count ==3)
+                    {
+                        next[row][col] = true;
+                    }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
+                    
+                }
+
+                else 
+                {
+                    if (count == 3)
+                    {
+                        next[row][col] = true;
+                    }
+                    else
+                    {
+                        next[row][col] = false;
+                    }
+                }
+            }
+                
+       } 
+       //boolean[][] temp = board;
+       boolean[][] temp;
+       temp = board;
+       board = next;
+       board = temp;
+   }
+   
+
+
+
    public LifeBoard(int size, PApplet p)
    {
         this.size = size;
         board = new boolean[size][size];
+        next = new boolean[size][size];
         this.p = p;
-        cellWidth =p.width / (float) size;
+        cellWidth = p.width / (float) size;
    }
 
    public void randomise()
@@ -33,10 +112,9 @@ public class LifeBoard {
 
    public void render ()
    {
-        p.stroke(255);
-        
         for(int row = 0 ; row < size; row++)
             {
+                p.stroke(255);
                 for (int col = 0 ; col < size ; col ++)
                 {
                    float x = col * cellWidth;
